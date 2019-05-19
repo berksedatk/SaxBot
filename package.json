@@ -1,0 +1,24 @@
+{
+  "name": "projectgear",
+  "version": "1.0.0",
+  "description": "A discord.js bot made by Sax#6211 for utility",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "mongoose": "^5.4.22"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaxDev/projectgear.git"
+  },
+  "author": "Sax#6211",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaxDev/projectgear/issues"
+  },
+  "homepage": "https://github.com/SaxDev/projectgear#readme"
+}
