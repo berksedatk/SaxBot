@@ -73,4 +73,4 @@ bot.on('message', message => {
 
 })
 
-bot.login(tokens.token)
+bot.login(process.env.TOKEN)
