@@ -21,7 +21,7 @@ bot.on('ready', () => {
 })
 
 bot.on('message', xpmsg => {
-	const msg = xpmsg.content.slice().split(/ + /);
+	const msg = xpmsg.content.split("");
 	if ( xpmsg.author.bot || msg.lenght < 10 || msg.lenght > 200 ) return;
 
 	xp = Math.floor(Math.random() * 100)
