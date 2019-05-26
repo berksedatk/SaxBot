@@ -20,9 +20,17 @@ bot.on('ready', () => {
   bot.user.setActivity(`In development. | &help`, { type: "WATCHING" });
 })
 
+bot.on('message', xpmsg => {
+	const msg = xpmsg.content.slice().split(/ + /);
+	if ( xpmsg.author.bot || msg.lenght < 10 || msg.lenght > 200 ) return;
+
+	xp = Math.floor(Math.random() * 100))
+	xpmsg.channel.send(`You gained ${xp} experience with your message.`)
+})
+
 bot.on('message', message => {
 
-  if (!message.content.startsWith(prefix) || message.author.bot) return
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
