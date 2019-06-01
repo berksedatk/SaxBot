@@ -22,7 +22,8 @@ bot.on('ready', () => {
 
 bot.on('message', xpmsg => {
 	const msg = xpmsg.content.split("");
-	if ( xpmsg.author.bot || msg.lenght < 10 || msg.lenght > 200 ) return;
+	const msgleght = xpmsg.lenght
+	if ( xpmsg.author.bot || msglenght < 10 || msglenght > 200 ) return;
 
 	xp = Math.floor(Math.random() * 100)
 	xpmsg.channel.send(`You gained ${xp} experience with your message.`)
