@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const mongoose = require('mongoose');
-const Exprofile = require('/models/exprofile.js')
+const Exprofile = require('./models/exprofile.js')
 const config = require('./config.json');
 const fs = require('fs');
 const prefix = config.prefix
@@ -29,7 +29,7 @@ bot.on('message', xpmsg => {
   const msgln = message.content.split("").lenght
 	if (msgln < 10 || msgln > 150 || xpmsg.author.bot) return;
 	const gnxp = Math.floor(Math.random() * 10)
-	
+
  Exprofile.findOne({
 	 userID: xpmsg.author.id
  }, (err, exprofile) => {
