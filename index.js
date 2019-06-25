@@ -1,7 +1,11 @@
 const Discord = require('discord.js');
+const mongoose = require('mongoose');
+const Exprofile = require('/models/exprofile.js')
 const config = require('./config.json');
 const fs = require('fs');
-const prefix = config.prefix;
+const prefix = config.prefix
+
+mongoose.connect(process.env.DB_TOKEN, { useNewUrlParser: true });
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -21,13 +25,35 @@ bot.on('ready', () => {
 })
 
 bot.on('message', xpmsg => {
-	const msg = xpmsg.content.split("");
-	const msglenght = xpmsg.lenght
-	if ( xpmsg.author.bot || msglenght < 10 || msglenght > 200 ) return;
 
-	xp = Math.floor(Math.random() * 100)
-	xpmsg.channel.send(`You gained ${xp} experience with your message.`)
-})
+  const msgln = message.content.split("").lenght
+	if (msgln < 10 || msgln > 150 || xpmsg.author.bot) return;
+	const gnxp = Math.floor(Math.random() * 10)
+	
+ Exprofile.findOne({
+	 userID: xpmsg.author.id
+ }, (err, exprofile) => {
+	 if (err) xpmsg.channel.send('An error occured: ' + err)
+	 if (!exprofile) {
+		 const newExprofile = new Exprofile({
+		     _id: mongoose.Types.ObjectId(),
+		     username: xpmsg.author.username,
+		     userID: xpmsg.author.id,
+		     exp: gnxp,
+		     lastMsg: xpmsg.createdAt
+		});
+	 }
+	 if (exprofile) {
+		 let msgDelay = xpmsg.createdAt - lastMsg
+		 if (msgDelay > 5000) {
+			 exprofile += gnxp
+		 }
+	 }
+	 exprofile.save().catch(err => {
+		 xpmsg.send('An error occured: ' + err);
+	 });
+ });
+});
 
 bot.on('message', message => {
 
