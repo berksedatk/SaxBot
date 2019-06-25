@@ -26,7 +26,7 @@ bot.on('ready', () => {
 
 bot.on('message', xpmsg => {
 
-  const msgln = message.content.split("").lenght
+  const msgln = xpmsg.content.split("").lenght
 	if (msgln < 10 || msgln > 150 || xpmsg.author.bot) return;
 	const gnxp = Math.floor(Math.random() * 10)
 
