@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const config = require('../config.json');
 const color = require('../data/colors.json');
 const mongoose = require('mongoose');
-const Exprofile = require('/models/exprofile.js')
+const Exprofile = require('./models/exprofile.js')
 
 module.exports = {
     name: 'level',
