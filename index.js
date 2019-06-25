@@ -50,8 +50,8 @@ bot.on('message', xpmsg => {
 		 }
 	 }
 	 exprofile.save().catch(err => {
-		 xpmsg.send('An error occured: ' + err);
-	 });
+		 xpmsg.channel.send("An error occured: " + err)
+	 })
  });
 });
 

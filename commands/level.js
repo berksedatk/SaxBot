@@ -29,8 +29,8 @@ module.exports = {
      		     lastMsg: message.createdAt
      		 });
          exprofile.save().catch(err => {
-      		 xpmsg.send('An error occured: ' + err);
-      	 });
+           message.channel.send("An error occured: " + err)
+         })
          let level = "None"
         }
         if (exprofile) {
