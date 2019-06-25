@@ -33,9 +33,9 @@ module.exports = {
       	 });
          let level = "None"
         }
-        if (exprofile {
-          
-        })
+        if (exprofile) {
+
+        }
         data.push(helpEmbed = new Discord.RichEmbed());
     		data.push(helpEmbed.setTitle(level));
     		data.push(helpEmbed.setColor(color.blue));
