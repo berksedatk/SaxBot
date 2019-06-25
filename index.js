@@ -42,16 +42,20 @@ bot.on('message', xpmsg => {
 		     exp: gnxp,
 		     lastMsg: xpmsg.createdAt
 		});
+		exprofile.save().catch(err => {
+ 		 xpmsg.channel.send("An error occured: " + err)
+ 	 })
 	 }
 	 if (exprofile) {
 		 let msgDelay = xpmsg.createdAt - lastMsg
 		 if (msgDelay > 5000) {
 			 exprofile += gnxp
 		 }
+		 exprofile.save().catch(err => {
+			 xpmsg.channel.send("An error occured: " + err)
+		 })
 	 }
-	 exprofile.save().catch(err => {
-		 xpmsg.channel.send("An error occured: " + err)
-	 })
+
  });
 });
 
