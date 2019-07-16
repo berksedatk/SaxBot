@@ -1,11 +1,7 @@
 const Discord = require('discord.js');
-const mongoose = require('mongoose');
-const Exprofile = require('./models/exprofile.js')
 const config = require('./config.json');
 const fs = require('fs');
 const prefix = config.prefix
-
-mongoose.connect(process.env.DB_TOKEN, { useNewUrlParser: true });
 
 const bot = new Discord.Client();
 bot.commands = new Discord.Collection();
@@ -20,44 +16,9 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 bot.on('ready', () => {
-  console.log(`Bot is on. \nCurrently running on ${bot.guilds.lenght} server with total of ${bot.users.lenght} users. `);
-  bot.user.setActivity(`In development. | &help`, { type: "WATCHING" });
+  console.log(`Bot is on. \nCurrently running on ${bot.guilds.size} server with total of ${bot.users.size} users. `);
+  bot.user.setActivity(`with Sax's toys. | s!help`, { type: "PLAYING" });
 })
-
-bot.on('message', xpmsg => {
-
-  const msgln = xpmsg.content.split("").lenght
-	if (msgln < 10 || msgln > 150 || xpmsg.author.bot) return;
-	const gnxp = Math.floor(Math.random() * 10)
-
- Exprofile.findOne({
-	 userID: xpmsg.author.id
- }, (err, exprofile) => {
-	 if (err) xpmsg.channel.send('An error occured: ' + err)
-	 if (!exprofile) {
-		 const newExprofile = new Exprofile({
-		     _id: mongoose.Types.ObjectId(),
-		     username: xpmsg.author.username,
-		     userID: xpmsg.author.id,
-		     exp: gnxp,
-		     lastMsg: xpmsg.createdAt
-		});
-		exprofile.save().catch(err => {
- 		 xpmsg.channel.send("An error occured: " + err)
- 	 })
-	 }
-	 if (exprofile) {
-		 let msgDelay = xpmsg.createdAt - lastMsg
-		 if (msgDelay > 5000) {
-			 exprofile += gnxp
-		 }
-		 exprofile.save().catch(err => {
-			 xpmsg.channel.send("An error occured: " + err)
-		 })
-	 }
-
- });
-});
 
 bot.on('message', message => {
 
@@ -71,11 +32,11 @@ bot.on('message', message => {
 
   if (!command) return;
 
-  if (command.dev === 'true' && !config.owner.includes(message.author.id)) {
-	  	return message.channel.send("You are not accesed to use this command.")
+  if (command.dev && !config.owner.includes(message.author.id)) {
+	  	return message.channel.send(":x: | You are not accesed to use this command!")
   }
   if (command.guildOnly && message.channel.type === 'dm') {
-		return message.reply('I can\'t execute that command inside DMs.');
+		return message.reply(':x: | This command cannot be executed in direct messages.');
 	}
 
   if (!cooldowns.has(command.name)) {
@@ -107,7 +68,7 @@ bot.on('message', message => {
 	}
 	catch (err) {
         console.error(`Executing command error: ${err}`);
-        message.channel.send("An error occured: " + err + " \nIf this happens more than one time, please join our server and report the bug. \nhttps://discord.gg/MKUWsgk")
+        message.channel.send("An error occured: " + err")
   }
 
 })

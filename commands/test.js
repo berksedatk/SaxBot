@@ -5,6 +5,7 @@ const color = require('../data/colors.json');
 
 module.exports = {
     name: 'test',
+    category: "Utility",
     description: 'Test',
     aliases: ['tests'],
     usage: '[test]',
