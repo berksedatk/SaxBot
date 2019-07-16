@@ -18,11 +18,14 @@ module.exports = {
 
     const code = args.join(" ");
 
+    try {
+    	  if (code.includes(process.env.BOT_TOKEN)) {
+        return message.channel.send("Not today.");
+      }
       let output = eval(code);
       if (output instanceof Promise || (Boolean(output) && typeof output.then === "function" && typeof output.catch === "function")) output = await output;
       output = inspect(output, { depth: 0, maxArrayLength: null });
       output = clean(output);
-      if (output.includes(process.env.TOKEN)) return message.channel.send("Nope.")
       if (output.length < 1000) {
         const embed = new Discord.RichEmbed()
           .addField("Input", `\`\`\`js\n${code}\`\`\``)
