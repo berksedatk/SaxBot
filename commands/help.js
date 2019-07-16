@@ -44,12 +44,22 @@ module.exports = {
 			.setTimestamp()
 			.setAuthor("Requested by " + message.author.name, message.author.avatarURL)
 			.setColor("BLUE")
-			.addField("General Commands:", general)
-			.addField("Fun Commands:", fun)
-			.addField("Moderation Commands:", moderation)
-			.addField("Utility Commands:", utility)
-			.addField("Misc. Commands:", misc)
-			.addField(`You can provide a command to get into details. ${prefix}help <command name>`)
+			if (general.lenght) {
+				helpEmbed.addField("General Commands:", general)
+			}
+			if (fun.lenght) {
+				helpEmbed.addField("Fun Commands:", fun)
+			}
+			if (moderation.lenght) {
+				helpEmbed.addField("Moderation Commands:", moderation)
+			}
+			if (utility.lenght) {
+				helpEmbed.addField("Utility Commands:", utility)
+			}
+			if (misc.lenght) {
+				helpEmbed.addField("Misc. Commands:", misc)
+			}
+			helpEmbed.addField(`You can provide a command to get into details. ${prefix}help <command name>`,)
 
 		  return message.author.send(helpEmbed)
 			   .then(() => {
