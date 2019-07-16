@@ -49,7 +49,7 @@ module.exports = {
 			.addField("Moderation Commands:", moderation)
 			.addField("Utility Commands:", utility)
 			.addField("Misc. Commands:", misc)
-			.addField("⠀", `You can provide a command to get into details. ${prefix}help <command name>`)
+			.addField(`You can provide a command to get into details. ${prefix}help <command name>`)
 
 		  return message.author.send(helpEmbed)
 			   .then(() => {
