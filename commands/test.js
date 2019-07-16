@@ -4,15 +4,15 @@ const config = require('../config.json');
 const color = require('../data/colors.json');
 
 module.exports = {
-    name: 'test',
-    category: "Utility",
-    description: 'Test',
-    aliases: ['tests'],
-    usage: '[test]',
-    cooldown: 5,
-    dev: 'true',
-    guildOnly: 'true', 
-    async execute(bot, message, args) {
-    	message.channel.send("Testing.")
-    }
+  name: 'test',
+  category: "Utility",
+  description: 'Test',
+  aliases: ['tests'],
+  usage: '[test]',
+  cooldown: 5,
+  dev: 'true',
+  guildOnly: 'true',
+  async execute(bot, message, args) {
+    message.channel.send("Testing.")
+  }
 }
