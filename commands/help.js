@@ -42,24 +42,14 @@ module.exports = {
 			let helpEmbed = new Discord.RichEmbed()
 			.setTitle("Here are the commands:")
 			.setTimestamp()
-			.setAuthor("Requested by " + message.author.name, message.author.avatarURL)
+			.setFooter("Requested by " + message.author.username, message.author.avatarURL)
 			.setColor("BLUE")
-			if (general.lenght) {
-				helpEmbed.addField("General Commands:", general)
-			}
-			if (fun.lenght) {
-				helpEmbed.addField("Fun Commands:", fun)
-			}
-			if (moderation.lenght) {
-				helpEmbed.addField("Moderation Commands:", moderation)
-			}
-			if (utility.lenght) {
-				helpEmbed.addField("Utility Commands:", utility)
-			}
-			if (misc.lenght) {
-				helpEmbed.addField("Misc. Commands:", misc)
-			}
-			helpEmbed.addField(`You can provide a command to get into details. ${prefix}help <command name>`,)
+			if (general[0]) helpEmbed.addField("General Commands:", general)
+			if (fun[0]) helpEmbed.addField("Fun Commands:", fun)
+			if (moderation[0]) helpEmbed.addField("Moderation Commands:", moderation)
+			if (utility[0]) helpEmbed.addField("Utility Commands:", utility)
+			if (misc[0]) helpEmbed.addField("Misc. Commands:", misc)
+			helpEmbed.setDescription(`You can provide a command to get into details. ${prefix}help <command name>`)
 
 		  return message.author.send(helpEmbed)
 			   .then(() => {
