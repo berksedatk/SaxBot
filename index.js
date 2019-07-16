@@ -68,7 +68,7 @@ bot.on('message', message => {
 	}
 	catch (err) {
         console.error(`Executing command error: ${err}`);
-        message.channel.send("An error occured: " + err")
+        message.channel.send("An error occured: " + err)
   }
 
 })
