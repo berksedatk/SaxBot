@@ -11,6 +11,7 @@ module.exports = {
     usage: '[test]',
     cooldown: 5,
     dev: 'true',
+    guildOnly: 'true', 
     async execute(bot, message, args) {
     	message.channel.send("Testing.")
     }
