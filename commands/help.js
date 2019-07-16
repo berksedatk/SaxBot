@@ -10,7 +10,7 @@ bot.commands = new Discord.Collection();
 module.exports = {
   name: 'help',
   category: "General",
-  description: "Shows up the commands of the Gladiator.",
+  description: "Commands of the bot.",
   aliases: ['commands'],
   usage: '[command name]',
   cooldown: 5,

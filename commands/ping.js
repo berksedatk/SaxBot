@@ -13,8 +13,8 @@ module.exports = {
     let pingEmbed = new Discord.RichEmbed()
       .setThumbnail(bot.user.avatarURL)
       .setColor(color.blue)
-      .setFooter("Requested by " + message.author.name, message.author.avatarURL)
-      .setAuthor(bot.user.name, bot.user.avatarURL)
+      .setFooter("Requested by " + message.author.username, message.author.avatarURL)
+      .setAuthor(bot.user.username, bot.user.avatarURL)
       .setTimestamp()
       .addField("Pong :ping_pong:", `Latency \`${loading.createdTimestamp - message.createdTimestamp}ms\`\nAPI Latency \`${Math.round(bot.ping)}ms\``);
     loading.edit(pingEmbed)
