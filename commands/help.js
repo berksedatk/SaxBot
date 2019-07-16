@@ -27,15 +27,15 @@ module.exports = {
 				if (c.dev) {
 					return;
 				} else if (c.category === "General") {
-					general.push(c.name + " - " c.description + "\n")
+					general.push(`${c.name} - ${c.description} \n`)
 				} else if (c.category === "Fun") {
-					fun.push(c.name + " - " c.description + "\n")
+					fun.push(`${c.name} - ${c.description} \n`)
 				} else if (c.category === "Moderation") {
-					moderation.push(c.name + " - " c.description + "\n")
+					moderation.push(`${c.name} - ${c.description} \n`)
 				} else if (c.category === "Utility") {
-					utility.push(c.name + " - " c.description + "\n")
+					utility.push(`${c.name} - ${c.description} \n`)
 				} else {
-					misc.push(c.name + " - " c.description + "\n")
+					misc.push(`${c.name} - ${c.description} \n`)
 				}
 			});
 
