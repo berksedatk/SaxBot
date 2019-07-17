@@ -40,6 +40,13 @@ bot.on('message', message => {
   if (command.guildOnly && message.channel.type === 'dm') {
     return message.reply(':x: | This command cannot be executed in direct messages.');
   }
+  if (command.reqPermissions) {
+    command.reqPermissions.map(p => {
+      if (!message.author.hasPermission(p)) {
+        return message.channel.send(":x: | You are not accesed to use this command! Required permission: " + p);
+      }
+    })
+  }
 
   if (!cooldowns.has(command.name)) {
     cooldowns.set(command.name, new Discord.Collection());

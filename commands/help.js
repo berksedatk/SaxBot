@@ -61,31 +61,28 @@ module.exports = {
         .catch(error => {
           message.reply("It seems like I cant DM you. Please enable your DMs!");
         });
+    } else if (args.lenght) {
+      const name = args[0].toLowerCase();
+      const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+
+      if (!command) {
+        return message.reply(`This command doesn't exists! use ${config.prefix}help to get into commands.`);
+      }
+
+      let helpEmbed = new Discord.RichEmbed()
+      .setTitle(command.name));
+      .setColor("BLUE"));
+      .setTimestamp());
+      .setFooter("Requested by " + message.author.username, message.author.avatarURL)
+
+      if (command.aliases) helpEmbed.addField("**Aliases:**", command.aliases.join(', ')));
+      if (command.category) helpEmbed.addField("**Category:**", command.category))
+      if (command.description) helpEmbed.addField("**Description:**", command.description));
+      if (command.usage) helpEmbed.addField("**Usage:**", prefix + command.name + " " + command.usage));
+      if (command.reqPermissions) helpEmbed.addField("**Required Permission(s):", command.reqPermissions.join(', ')));
+      if (command.guildOnly) helpEmbed.addField("**Guild Only**", "Command only can be executed in a guild.")
+      if (command.cooldown) helpEmbed.addField("**Cooldown:**", command.cooldown + "second(s)"));
+      message.channel.send(helpEmbed)
     }
-
-    const name = args[0].toLowerCase();
-    const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
-
-    if (!command) {
-      return message.reply("That\'s not a valid command, use &help to get list of the commands.");
-    }
-
-    data.push(helpEmbed = new Discord.RichEmbed());
-    data.push(helpEmbed.setTitle(command.name));
-    data.push(helpEmbed.setColor(color.blue));
-    data.push(helpEmbed.setTimestamp());
-    data.push(helpEmbed.setAuthor(bot.user.username, bot.user.avatarURL));
-
-    if (command.aliases) data.push(helpEmbed.addField("**Aliases:**", command.aliases.join(', ')));
-    if (command.category) data.push(helpEmbed.addField("**Category:**", command.category))
-    if (command.description) data.push(helpEmbed.addField("**Description:**", command.description));
-    if (command.usage) data.push(helpEmbed.addField("**Usage:**", prefix + command.name + " " + command.usage));
-    if (command.cooldown) data.push(helpEmbed.addField("**Cooldown:**", command.cooldown + "second(s)"));
-
-    data.push(message.channel.send(helpEmbed))
-
-    message.channel.send(data.helpEmbed, {
-      split: true
-    });
   }
 };
