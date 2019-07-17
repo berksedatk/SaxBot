@@ -21,7 +21,7 @@ module.exports = {
     if (!message.guild.member(member).kickable) return message.channel.send(":x: | You can't kick this user. They are too powerful.");
 
     try {
-      message.guild.kick(member, reason)
+      member.kick(reason)
     } catch (e) {
       message.channel.send("An error occured: " + e);
     }
