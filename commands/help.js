@@ -70,9 +70,9 @@ module.exports = {
       }
 
       let helpEmbed = new Discord.RichEmbed()
-      .setTitle(command.name));
-      .setColor("BLUE"));
-      .setTimestamp());
+      .setTitle(command.name)
+      .setColor("BLUE"))
+      .setTimestamp())
       .setFooter("Requested by " + message.author.username, message.author.avatarURL)
 
       if (command.aliases) helpEmbed.addField("**Aliases:**", command.aliases.join(', ')));
