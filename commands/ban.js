@@ -18,10 +18,10 @@ module.exports = {
 
     if (reason.lenght < 1) return message.channel.send(":x: | You have to provide a reason for ban!");
     if (message.mentions.users.size < 1) return message.channel.send(":x: | You have to provide a user to use ban!");
-    if (!message.guild.member(user).bannable) return message.channel.send(":x: | You can't ban this user. They are so powerful.");
+    if (!message.guild.member(member).bannable) return message.channel.send(":x: | You can't ban this user. They are so powerful.");
 
     try {
-      message.guild.ban(user, reason)
+      message.guild.ban(member, reason)
     } catch (e) {
       message.channel.send("An error occured: " + e);
     }
