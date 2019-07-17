@@ -42,7 +42,7 @@ bot.on('message', message => {
   }
   if (command.reqPermissions) {
     command.reqPermissions.map(p => {
-      if (!message.author.hasPermission(p)) {
+      if (!message.guild.members.get(message.author.id).hasPermission(p)) {
         return message.channel.send(":x: | You are not accesed to use this command! Required permission: " + p);
       }
     })

@@ -24,7 +24,7 @@ module.exports = {
       commands
     } = message.client;
 
-    if (!args.lenght) {
+    if (!args[0]) {
       commands.map(c => {
         if (c.dev) {
           return;
@@ -61,7 +61,7 @@ module.exports = {
         .catch(error => {
           message.reply("It seems like I cant DM you. Please enable your DMs!");
         });
-    } else if (args.lenght) {
+    } else if (args[0]) {
       const name = args[0].toLowerCase();
       const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
