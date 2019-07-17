@@ -18,7 +18,7 @@ module.exports = {
 
     if (reason.lenght < 1) return message.channel.send(":x: | You have to provide a reason for ban!");
     if (message.mentions.users.size < 1) return message.channel.send(":x: | You have to provide a user to use ban!");
-    if (!message.guild.member(member).bannable) return message.channel.send(":x: | You can't ban this user. They are so powerful.");
+    if (!message.guild.member(member).bannable) return message.channel.send(":x: | You can't ban this user. They are too powerful.");
 
     try {
       message.guild.ban(member, reason)
@@ -34,5 +34,6 @@ module.exports = {
     .addField("User", `${member.username}#${member.discriminator}(id: ${member.id})`)
     .addField("Reason", reason)
     .addField("Banned by", message.author.username + "#" + message.author.discriminator)
+    message.channel.send(banEmbed)
   }
 }

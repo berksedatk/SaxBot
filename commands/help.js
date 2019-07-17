@@ -79,7 +79,7 @@ module.exports = {
       if (command.category) helpEmbed.addField("**Category:**", command.category)
       if (command.description) helpEmbed.addField("**Description:**", command.description);
       if (command.usage) helpEmbed.addField("**Usage:**", prefix + command.name + " " + command.usage);
-      if (command.reqPermissions) helpEmbed.addField("**Required Permission(s):", command.reqPermissions.join(', '));
+      if (command.reqPermissions) helpEmbed.addField("**Required Permission(s):**", command.reqPermissions.join(', '));
       if (command.guildOnly) helpEmbed.addField("**Guild Only**", "Command only can be executed in a guild.")
       if (command.cooldown) helpEmbed.addField("**Cooldown:**", command.cooldown + "second(s)");
       message.channel.send(helpEmbed)
