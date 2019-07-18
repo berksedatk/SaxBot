@@ -14,7 +14,7 @@ module.exports = {
     if (!voiceChannel) return message.channel.send(":x: | You have to be in a voice channel at first.");
 
     const number = Math.floor(Math.random() * 5) + 1;
-    const jazzMusic = require(`../jazz/${number}.mp3`);
+    const jazzMusic = `../jazz/${number}.mp3`
 
     voiceChannel.join().then(connection => {
       const dispatcher = connection.playFile(jazzMusic);
