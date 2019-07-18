@@ -2,7 +2,6 @@ const fs = require('fs')
 const Discord = require('discord.js')
 const config = require('../config.json');
 const color = require('../data/colors.json');
-const opus = require('node-opus');
 
 module.exports = {
   name: 'jazz',
