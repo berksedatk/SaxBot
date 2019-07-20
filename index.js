@@ -10,10 +10,10 @@ db.connect(process.env.DB_TOKEN, {
   useNewUrlParser: true
 });
 
-const bot = new Discord.Client();
-bot.commands = new Discord.Collection(
+const bot = new Discord.Client({
   disableEveryone: true
-);
+});
+bot.commands = new Discord.Collection();
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -107,7 +107,7 @@ bot.on('guildCreate', guild => {
         roleRewards: []
       });
       newGuild.save().catch(err => {
-      console.log("Error while joining: " + err);
+        console.log("Error while joining: " + err);
         return guild.owner.send("An error occured while joining server. Please contact with developers: " + err);
       });
     };
