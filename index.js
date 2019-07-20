@@ -89,7 +89,7 @@ bot.on('message', message => {
 });
 
 bot.on('guildCreate', guild => {
-  bot.channels.find("602134877273456643").send(`**New guild added!** \nOwner: ${guild.owner.username} \nMember count: ${guild.members.size} \nChannel count: ${guild.channels.size}`)
+  bot.channels.get("602134877273456643").send(`**New guild added!** \nOwner: ${guild.owner.username} \nMember count: ${guild.members.size} \nChannel count: ${guild.channels.size}`)
   Server.findOne({
     guildID: guild.id
   }, (err, dbGuild) => {
