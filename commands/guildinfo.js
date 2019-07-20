@@ -24,7 +24,7 @@ module.exports = {
 
     let guildEmbed = new Discord.RichEmbed()
     .setTitle(guild.name)
-    .setThumbnail(guild.icon)
+    .setThumbnail(guild.iconURL)
     .addField("Guild Owner",`${guild.owner.username}#${guild.owner.discriminator}`)
     .addField("Guild Create Date", guild.createdAt)
     .addField("Member Count", guild.memberCount)
