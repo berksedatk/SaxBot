@@ -93,9 +93,9 @@ bot.on('guildCreate', guild => {
   .setTitle("**New guild added!**")
   .setThumbnail(guild.iconURL)
   .setTimestamp()
-  .setColor("YELLOW")
+  .setColor("GOLD")
   .addField("Guild Name", guild.name + "(" + guild.id + ")")
-  .addField("Guild Owner", guild.owner.username + "(" + guild.owner.id + ")")
+  .addField("Guild Owner", guild.owner.user.username + "(" + guild.owner.id + ")")
   .addField("Member Count", guild.memberCount);
   bot.channels.get("602134877273456643").send(guildEmbed);
   Server.findOne({
@@ -128,5 +128,16 @@ bot.on('guildCreate', guild => {
     };
   });
 });
+
+bot.on('guildDelete', guild => {
+  const guildEmbed = new Discord.RichEmbed()
+  .setTitle("**Guild removed.**")
+  .setThumbnail(guild.iconURL)
+  .setTimestamp()
+  .setColor("RED")
+  .addField("Guild Name", guild.name + "(" + guild.id + ")")
+  .addField("Guild Owner", guild.owner.user.username + "(" + guild.owner.id + ")")
+  bot.channels.get("602134877273456643").send(guildEmbed)
+})
 
 bot.login(process.env.TOKEN)
