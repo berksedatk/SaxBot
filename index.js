@@ -50,7 +50,6 @@ bot.on('guildCreate', guild => {
       });
     };
     if (err) return {
-      console.log(err);
       guild.owner.send("An error occured while joining server. Please contact with developers: " + err);
     };
     if (dbGuild) {
