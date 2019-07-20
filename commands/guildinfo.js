@@ -42,7 +42,7 @@ module.exports = {
     .addField("Member Count", `Users: ${usercount}, Bots: ${botcount}`, true)
     .addField("Channel Count", `Text: ${textcount}, VC: ${vccount}`, true)
     .addField("Role Count", guild.roles.size)
-    .addField("Emoji Count" guild.emojis.size)
+    .addField("Emoji Count", guild.emojis.size)
 
     message.channel.send(guildEmbed)
   }
