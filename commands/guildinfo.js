@@ -12,24 +12,37 @@ module.exports = {
   guildOnly: 'true',
   async execute(bot, message, args) {
     const guild = message.guild;
+
     let vccount = 0;
     let textcount = 0;
     guild.channels.map(c => {
       if (c.type === "text") {
         textcount += 1;
-      } else if (c.type === "vc") {
+      } else if (c.type === "voice") {
         vccount += 1;
       }
-    })
+    });
+
+    let usercount = 0;
+    let botcount = 0;
+    guild.members.map(m => {
+      if (m.bot) {
+        botcount += 1;
+      } else {
+        usercount += 1;
+      }
+    });
 
     let guildEmbed = new Discord.RichEmbed()
     .setTitle(guild.name)
     .setThumbnail(guild.iconURL)
-    .addField("Guild Owner",`${guild.owner.username}#${guild.owner.discriminator}`)
+    .setColor("PURPLE")
+    .addField("Guild Owner",`${guild.owner.user.username}#${guild.owner.user.discriminator}`)
     .addField("Guild Create Date", guild.createdAt)
-    .addField("Member Count", guild.memberCount)
-    .addField("Channel Count", `Text: ${textcount}, VC: ${vccount}`)
+    .addField("Member Count", `Users: ${usercount}, Bots: ${botcount}`, true)
+    .addField("Channel Count", `Text: ${textcount}, VC: ${vccount}`, true)
     .addField("Role Count", guild.roles.size)
+    .addField("Emoji Count" guild.emojis.size)
 
     message.channel.send(guildEmbed)
   }
