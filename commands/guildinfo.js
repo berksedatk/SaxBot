@@ -30,5 +30,7 @@ module.exports = {
     .addField("Member Count", guild.memberCount)
     .addField("Channel Count", `Text: ${textcount}, VC: ${vccount}`)
     .addField("Role Count", guild.roles.size)
+
+    message.channel.send(guildEmbed)
   }
 }
