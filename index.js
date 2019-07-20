@@ -1,12 +1,12 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const fs = require('fs');
-const db = require('mongoose');
+const mongoose = require('mongoose');
 const Server = require('./models/server.js');
 
 const prefix = config.prefix
 
-db.connect(process.env.DB_TOKEN, {
+mongoose.connect(process.env.DB_TOKEN, {
   useNewUrlParser: true
 });
 
@@ -89,7 +89,7 @@ bot.on('message', message => {
 });
 
 bot.on('guildCreate', guild => {
-  bot.channels.get("602134877273456643").send(`**New guild added!** \nOwner: ${guild.owner.username} \nMember count: ${guild.members.size} \nChannel count: ${guild.channels.size}`)
+  bot.channels.get("602134877273456643").send(`**New guild added!** \nOwner: ${guild.owner.user.username} \nMember count: ${guild.members.size} \nChannel count: ${guild.channels.size}`)
   Server.findOne({
     guildID: guild.id
   }, (err, dbGuild) => {

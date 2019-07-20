@@ -26,7 +26,7 @@ module.exports = {
     let usercount = 0;
     let botcount = 0;
     guild.members.map(m => {
-      if (m.bot) {
+      if (m.user.bot === true) {
         botcount += 1;
       } else {
         usercount += 1;
@@ -34,7 +34,7 @@ module.exports = {
     });
 
     let guildEmbed = new Discord.RichEmbed()
-    .setTitle(guild.name)
+    .setTitle(`**${guild.name}**`)
     .setThumbnail(guild.iconURL)
     .setColor("PURPLE")
     .addField("Guild Owner",`${guild.owner.user.username}#${guild.owner.user.discriminator}`)
