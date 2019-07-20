@@ -46,7 +46,6 @@ bot.on('guildCreate', guild => {
         roleRewards: []
       });
       newGuild.save().catch(err => {
-        console.log(err);
         return guild.owner.send("An error occured while joining server. Please contact with developers: " + err);
       });
     };
