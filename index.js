@@ -1,10 +1,15 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
 const fs = require('fs');
+const db = require('mongoose');
+const Server = require('./models/server.js');
+
 const prefix = config.prefix
 
+db.connect(process.env.DB_TOKEN, { useNewUrlParser: true });
+
 const bot = new Discord.Client();
-bot.commands = new Discord.Collection();
+bot.commands = new Discord.Collection({disableEveryone: true});
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -21,6 +26,39 @@ bot.on('ready', () => {
     type: "PLAYING"
   });
 })
+
+bot.on('guildCreate', guild => {
+  bot.channels.find("602134877273456643").send(`**New guild added!** \nOwner: ${guild.owner.username} \nMember count: ${guild.members.size} \nChannel count: ${guild.channels.size}`)
+  Server.findOne({
+    guildID: guild.id
+  }, (err, dbGuild) => {
+    if (!dbGuild) {
+      guild.owner.send(`Thanks for adding me on **${guild.name}**, you can view my commands by using \`s!help\` command!`);
+      const newGuild = new Server({
+        _id: mongoose.Types.ObjectId(),
+        guildName: guild.name,
+        guildID: guild.id,
+        guildSettings: [{
+          xp: true
+        }],
+        xpData: [],
+        channelData: [],
+        roleRewards: []
+      });
+      newGuild.save().catch(err => {
+        console.log(err);
+        return guild.owner.send("An error occured while joining server. Please contact with developers: " + err);
+      });
+    };
+    if (err) return {
+      console.log(err);
+      guild.owner.send("An error occured while joining server. Please contact with developers: " + err);
+    };
+    if (dbGuild) {
+      guild.owner.send(`Yay! I knew you would add me back to ${guild.name}. Remember, you can use \`s!help\` to view my commands.`);
+    };
+  });
+});
 
 bot.on('message', message => {
 
