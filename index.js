@@ -105,10 +105,10 @@ bot.on('message', msg => {
       let count = 0;
       dbGuild.xpData.map(() => count =+ 1);
       for (var i = 0; i < count; i++) {
-        message.channel.send(i)
+        msg.channel.send(i)
         if (dbGuild.xpData[i].UserID === msg.author.id) {
           xpUser = dbGuild.xpData[i]
-          message.channel.send("test")
+          msg.channel.send("test")
         }
       }
       if (!xpUser === "") {
