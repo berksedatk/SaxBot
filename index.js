@@ -103,7 +103,7 @@ bot.on('message', msg => {
     } else if (dbGuild) {
       let xpUser = "";
       for (var i = 0; i < dbGuild.lenght; i++) {
-        if (dbGuild.xpData[i].userID === msg.author.id) {
+        if (dbGuild.xpData[i].UserID === msg.author.id) {
           xpUser = dbGuild.xpData[i]
         }
       }
