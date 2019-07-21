@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const serverSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    guildName: String,
+    guildOwnerID: String,
     guildID: String,
     guildSettings: Array,
     xpData: Array,

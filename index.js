@@ -105,7 +105,7 @@ bot.on('guildCreate', guild => {
       guild.owner.send(`Thanks for adding me on **${guild.name}**, you can view my commands by using \`s!help\` command!`);
       const newGuild = new Server({
         _id: mongoose.Types.ObjectId(),
-        guildName: guild.name,
+        guildOwnerID: guild.owner.id,
         guildID: guild.id,
         guildSettings: [{
           xp: true
