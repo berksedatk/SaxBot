@@ -90,27 +90,27 @@ bot.on('message', message => {
 
 bot.on('message', msg => {
 
-  const xpmsg = message.content.split("");
-  if (xpmsg.size < 12 || xpmsg.size > 200 || message.author.bot) return;
+  const xpmsg = msg.content.split("");
+  if (xpmsg.size < 12 || xpmsg.size > 200 || msg.author.bot) return;
 
   const rawxp = Math.floor(Math.random() * 100) + 1;
 
   Server.findOne({
-    guildID: message.guild.id
+    guildID: msg.guild.id
   }, (err, dbGuild) => {
-    if (!dbGuild) return message.channel.send("An error occured on database, please contact devs.");
-    if (err) return message.channel.send("An error occured on database, please contact devs: " + err);
+    if (!dbGuild) return msg.channel.send("An error occured on database, please contact devs.");
+    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
     if (dbGuild) {
       for (var i; i < dbGuild.lenght; i++) {
-        if (dbGuild.xpData[i].userID === message.author.id) {
+        if (dbGuild.xpData[i].userID === msg.author.id) {
           let xpUser = dbGuild.xpData[i]
         }
       }
       if (!xpUser) {
         dbGuild.xpData.push({
-          UserID: message.author.id,
+          UserID: msg.author.id,
           xp: rawxp,
-          lastMsg: message.createdTimestamp
+          lastMsg: msg.createdTimestamp
         })
       } else if (xpUser) {
         xpUser.xp += rawxp
