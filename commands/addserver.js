@@ -21,8 +21,8 @@ module.exports = {
       if (!dbGuild) {
         const newGuild = new Server({
           _id: mongoose.Types.ObjectId(),
-          guildOwnerID: guild.owner.id,
-          guildID: guild.id,
+          guildOwnerID: message.guild.owner.id,
+          guildID: message.guild.id,
           guildSettings: [{
             xp: true
           }],
