@@ -33,38 +33,6 @@ bot.on('ready', () => {
 
 bot.on('message', message => {
 
-  //Exp
-
-  const xpmsg = message.content.split("");
-  if (xpmsg.size < 12 || xpmsg.size > 200 || message.author.bot) return;
-
-  const rawxp = Math.floor(Math.random() * 100) + 1;
-
-  Server.findOne({
-    guildID: message.guild.id
-  }, (err, dbGuild) => {
-    if (!dbGuild) return message.channel.send("An error occured on database, please contact devs.");
-    if (err) return message.channel.send("An error occured on database, please contact devs: " + err);
-    if (dbGuild) {
-      for (var i; i < dbGuild.lenght; i++) {
-        if (dbGuild.xpData[i].userID === message.author.id) {
-          let xpUser = dbGuild.xpData[i]
-        }
-      }
-      if (!xpUser) {
-        dbGuild.xpData.push({
-          UserID: message.author.id,
-          xp: rawxp,
-          lastMsg: message.createdTimestamp
-        })
-      } else if (xpUser) {
-        xpUser.xp += rawxp
-      }
-    }
-  })
-
-  //Commands
-
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
@@ -118,6 +86,38 @@ bot.on('message', message => {
     console.error(`Executing command error: ${err}`);
     message.channel.send("An error occured: " + err)
   }
+});
+
+bot.on('message', msg => {
+
+  const xpmsg = message.content.split("");
+  if (xpmsg.size < 12 || xpmsg.size > 200 || message.author.bot) return;
+
+  const rawxp = Math.floor(Math.random() * 100) + 1;
+
+  Server.findOne({
+    guildID: message.guild.id
+  }, (err, dbGuild) => {
+    if (!dbGuild) return message.channel.send("An error occured on database, please contact devs.");
+    if (err) return message.channel.send("An error occured on database, please contact devs: " + err);
+    if (dbGuild) {
+      for (var i; i < dbGuild.lenght; i++) {
+        if (dbGuild.xpData[i].userID === message.author.id) {
+          let xpUser = dbGuild.xpData[i]
+        }
+      }
+      if (!xpUser) {
+        dbGuild.xpData.push({
+          UserID: message.author.id,
+          xp: rawxp,
+          lastMsg: message.createdTimestamp
+        })
+      } else if (xpUser) {
+        xpUser.xp += rawxp
+      }
+    }
+  })
+
 });
 
 bot.on('guildCreate', guild => {
