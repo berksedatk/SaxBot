@@ -95,38 +95,38 @@ bot.on('message', msg => {
 
   const rawxp = Math.floor(Math.random() * 100) + 1;
 
-  Server.findOne({
-    guildID: msg.guild.id
-  }, (err, dbGuild) => {
-    if (!dbGuild) {
-      msg.channel.send("An error occured on database, please contact devs.");
-    } else if (dbGuild) {
-      let xpUser = "";
-      let count = 0;
-      dbGuild.xpData.map(() => count =+ 1);
-      for (var i = 0; i < count; i++) {
-        if (dbGuild.xpData[i].UserID === msg.author.id) {
-          xpUser = dbGuild.xpData[i]
-        }
-      }
-      if (!xpUser === "") {
-        xpUser.xp += rawxp
-        dbGuild.save().catch(err => {
-          message.channel.send("An error occured: " + err)
-        });
-      } else if (xpUser === "") {
-        dbGuild.xpData.push({
-          UserID: msg.author.id,
-          xp: rawxp,
-          lastMsg: msg.createdTimestamp
-        })
-        dbGuild.save().catch(err => {
-          message.channel.send("An error occured: " + err)
-        });
-      }
-    }
-    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
-  })
+//  Server.findOne({
+//    guildID: msg.guild.id
+//  }, (err, dbGuild) => {
+//    if (!dbGuild) {
+//      msg.channel.send("An error occured on database, please contact devs.");
+//    } else if (dbGuild) {
+//      let xpUser = "";
+//      let count = 0;
+//      dbGuild.xpData.map(() => count =+ 1);
+//      for (var i = 0; i < count; i++) {
+//        if (dbGuild.xpData[i].UserID === msg.author.id) {
+//          xpUser = dbGuild.xpData[i]
+//        }
+//      }
+//      if (!xpUser === "") {
+//        xpUser.xp += rawxp
+//        dbGuild.save().catch(err => {
+//          message.channel.send("An error occured: " + err)
+//        });
+//      } else if (xpUser === "") {
+//        dbGuild.xpData.push({
+//          UserID: msg.author.id,
+//          xp: rawxp,
+//          lastMsg: msg.createdTimestamp
+//        })
+//        dbGuild.save().catch(err => {
+//          message.channel.send("An error occured: " + err)
+//        });
+//      }
+//    }
+//    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
+//  })
 
 });
 
