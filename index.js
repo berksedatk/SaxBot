@@ -98,7 +98,7 @@ bot.on('message', msg => {
   Server.findOne({
     guildID: msg.guild.id
   }, (err, dbGuild) => {
-    if (!dbGuild) return msg.channel.send("An error occured on database, please contact devs.");
+    if (!dbGuild) msg.channel.send("An error occured on database, please contact devs.");
     if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
     if (dbGuild) {
       for (var i; i < dbGuild.lenght; i++) {
