@@ -101,17 +101,18 @@ bot.on('message', msg => {
     if (!dbGuild) {
       msg.channel.send("An error occured on database, please contact devs.");
     } else if (dbGuild) {
+      let xpUser = "";
       for (var i; i < dbGuild.lenght; i++) {
         if (dbGuild.xpData[i].userID === msg.author.id) {
-          let xpUser = dbGuild.xpData[i]
+          xpUser = dbGuild.xpData[i]
         }
       }
-      if (xpUser) {
+      if (!xpUser === "") {
         xpUser.xp += rawxp
         dbGuild.save().catch(err => {
           message.channel.send("An error occured: " + err)
         });
-      } else if (!xpUser) {
+      } else if (xpUser === "") {
         dbGuild.xpData.push({
           UserID: msg.author.id,
           xp: rawxp,
