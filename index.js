@@ -105,6 +105,7 @@ bot.on('message', msg => {
       for (var i = 0; i < dbGuild.lenght; i++) {
         if (dbGuild.xpData[i].UserID === msg.author.id) {
           xpUser = dbGuild.xpData[i]
+          message.channel.send("test")
         }
       }
       if (!xpUser === "") {
