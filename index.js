@@ -112,7 +112,7 @@ bot.on('message', msg => {
       }
       if (!xpUser === "A") {
         Server.update({
-          "xpData.UserID": message.author.id
+          "xpData.UserID": msg.author.id
         }, {
           $inc: { "xpData.$.xp" : rawxp }
         })
@@ -123,7 +123,7 @@ bot.on('message', msg => {
             lastMsg: msg.createdTimestamp
           })
           dbGuild.save().catch(err => {
-            message.channel.send("An error occured: " + err)
+            msg.channel.send("An error occured: " + err)
           });
       }
     }
