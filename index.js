@@ -102,7 +102,9 @@ bot.on('message', msg => {
       msg.channel.send("An error occured on database, please contact devs.");
     } else if (dbGuild) {
       let xpUser = "";
-      for (var i = 0; i < dbGuild.xpData.lenght; i++) {
+      let count = 0;
+      dbGuild.xpData.map(() => count =+ 1);
+      for (var i = 0; i < count; i++) {
         message.channel.send(i)
         if (dbGuild.xpData[i].UserID === msg.author.id) {
           xpUser = dbGuild.xpData[i]
