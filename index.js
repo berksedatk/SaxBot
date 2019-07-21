@@ -91,7 +91,7 @@ bot.on('message', message => {
 bot.on('message', msg => {
 
   const xpmsg = msg.content.split("");
-  if (xpmsg.size < 12 || xpmsg.size > 200 || msg.author.bot) return;
+  if (xpmsg.size < 12 || xpmsg.size > 200 || msg.author.bot || msg.content.startsWith(prefix)) return;
 
   const rawxp = Math.floor(Math.random() * 100) + 1;
 
@@ -106,14 +106,20 @@ bot.on('message', msg => {
           let xpUser = dbGuild.xpData[i]
         }
       }
-      if (!xpUser) {
+      if (xpUser) {
+        xpUser.xp += rawxp
+        dbGuild.save().catch(err => {
+          message.channel.send("An error occured: " + err)
+        });
+      } else if (!xpUser) {
         dbGuild.xpData.push({
           UserID: msg.author.id,
           xp: rawxp,
           lastMsg: msg.createdTimestamp
         })
-      } else if (xpUser) {
-        xpUser.xp += rawxp
+        dbGuild.save().catch(err => {
+          message.channel.send("An error occured: " + err)
+        });
       }
     }
     if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
