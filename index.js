@@ -98,9 +98,9 @@ bot.on('message', msg => {
   Server.findOne({
     guildID: msg.guild.id
   }, (err, dbGuild) => {
-    if (!dbGuild) msg.channel.send("An error occured on database, please contact devs.");
-    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
-    if (dbGuild) {
+    if (!dbGuild) {
+      msg.channel.send("An error occured on database, please contact devs.");
+    } else if (dbGuild) {
       for (var i; i < dbGuild.lenght; i++) {
         if (dbGuild.xpData[i].userID === msg.author.id) {
           let xpUser = dbGuild.xpData[i]
@@ -116,6 +116,7 @@ bot.on('message', msg => {
         xpUser.xp += rawxp
       }
     }
+    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
   })
 
 });
