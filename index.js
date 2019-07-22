@@ -104,30 +104,32 @@ bot.on('message', msg => {
     } else if (dbGuild) {
       let xpUser;
       let count = 0;
-      dbGuild.xpData.map(() => count =+ 1);
+      dbGuild.xpData.map(() => count = +1);
       for (var i = 0; i < count; i++) {
         if (dbGuild.xpData[i].UserID === msg.author.id) {
           xpUser = dbGuild.xpData[i]
-          message.channel.send(xpUser.xp)
+          msg.channel.send(xpUser.xp)
         }
       }
       if (!xpUser === undefined) {
-        message.channel.send("User Found")
+        msg.channel.send("User Found")
         Server.update({
           "xpData.UserID": msg.author.id
         }, {
-          $inc: { "xpData.$.xp" : rawxp }
+          $inc: {
+            "xpData.$.xp": rawxp
+          }
         })
       } else if (xpUser === undefined) {
-        message.channel.send("User Not Found")
-          dbGuild.xpData.push({
-            UserID: msg.author.id,
-            xp: rawxp,
-            lastMsg: msg.createdTimestamp
-          })
-          dbGuild.save().catch(err => {
-            msg.channel.send("An error occured: " + err)
-          });
+        msg.channel.send("User Not Found")
+        dbGuild.xpData.push({
+          UserID: msg.author.id,
+          xp: rawxp,
+          lastMsg: msg.createdTimestamp
+        })
+        dbGuild.save().catch(err => {
+          msg.channel.send("An error occured: " + err)
+        });
       }
     }
   })
