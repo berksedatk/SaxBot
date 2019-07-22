@@ -108,15 +108,18 @@ bot.on('message', msg => {
       for (var i = 0; i < count; i++) {
         if (dbGuild.xpData[i].UserID === msg.author.id) {
           xpUser = dbGuild.xpData[i]
+          message.channel.send(xpUser.xp)
         }
       }
       if (!xpUser === undefined) {
+        message.channel.send("User Found")
         Server.update({
           "xpData.UserID": msg.author.id
         }, {
           $inc: { "xpData.$.xp" : rawxp }
         })
       } else if (xpUser === undefined) {
+        message.channel.send("User Not Found")
           dbGuild.xpData.push({
             UserID: msg.author.id,
             xp: rawxp,
