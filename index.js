@@ -97,50 +97,50 @@ bot.on('message', msg => {
 
   let addxp = false;
 
-  Server.findOne({
-    guildID: msg.guild.id
-  }, (err, dbGuild) => {
-    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
-    if (!dbGuild) {
-      msg.channel.send("An error occured on database, please contact devs.")
-    } else if (dbGuild) {
-      let xpUser;
-      let count = 0;
-      dbGuild.xpData.map(() => count = +1);
-      for (var i = 0; i < count; i++) {
-        if (dbGuild.xpData[i].UserID === msg.author.id) {
-          xpUser = dbGuild.xpData[i]
-          msg.channel.send(xpUser.xp)
-        }
-      }
-      if (xpUser === undefined) {
-        msg.channel.send("User Not Found")
-        dbGuild.xpData.push({
-          UserID: msg.author.id,
-          xp: rawxp,
-          lastMsg: msg.createdTimestamp
-        })
-        dbGuild.save().catch(err => {
-          msg.channel.send("An error occured: " + err)
-        });
-      } else {
-        msg.channel.send("User Found")
-        addexp(dbGuild)
-      }
-    }
-  });
+//  Server.findOne({
+//    guildID: msg.guild.id
+//  }, (err, dbGuild) => {
+//    if (err) return msg.channel.send("An error occured on database, please contact devs: " + err);
+//    if (!dbGuild) {
+//      msg.channel.send("An error occured on database, please contact devs.")
+//    } else if (dbGuild) {
+//      let xpUser;
+//      let count = 0;
+//      dbGuild.xpData.map(() => count = +1);
+//      for (var i = 0; i < count; i++) {
+//        if (dbGuild.xpData[i].UserID === msg.author.id) {
+//          xpUser = dbGuild.xpData[i]
+//          msg.channel.send(xpUser.xp)
+//        }
+//      }
+//      if (xpUser === undefined) {
+//        msg.channel.send("User Not Found")
+//        dbGuild.xpData.push({
+//          UserID: msg.author.id,
+//          xp: rawxp,
+//          lastMsg: msg.createdTimestamp
+//        })
+//        dbGuild.save().catch(err => {
+//          msg.channel.send("An error occured: " + err)
+//        });
+//      } else {
+//        msg.channel.send("User Found")
+//        addexp(dbGuild)
+//      }
+//    }
+//  });
 
-  function addexp(dbGuild) {
-    msg.channel.send("Adding xp")
-    dbGuild.update({
-      "xpData.UserID": msg.author.id
-    }, {
-      $inc: {
-        "xpData.$.xp": rawxp
-      }
-    })
-    dbGuild.save()
-  }
+//  function addexp(dbGuild) {
+//    msg.channel.send("Adding xp")
+//    dbGuild.update({
+//      "xpData.UserID": msg.author.id
+//    }, {
+//      $inc: {
+//        "xpData.$.xp": rawxp
+//      }
+//    })
+//    dbGuild.save()
+//  }
 });
 
 bot.on('guildCreate', guild => {
