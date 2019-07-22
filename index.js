@@ -125,12 +125,12 @@ bot.on('message', msg => {
         });
       } else {
         msg.channel.send("User Found")
-        addxp = true
+        addexp()
       }
     }
   });
 
-  if (addxp === true) {
+  function addexp() {
     msg.channel.send("Adding xp")
     Server.update({
       "xpData.UserID": msg.author.id
@@ -142,8 +142,6 @@ bot.on('message', msg => {
     dbGuild.save().catch(err => {
       msg.channel.send("An error occured: " + err)
     });
-  } else {
-    msg.channel.send("O " +addxp)
   }
 });
 
