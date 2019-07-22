@@ -139,9 +139,6 @@ bot.on('message', msg => {
         "xpData.$.xp": rawxp
       }
     })
-    dbGuild.save().catch(err => {
-      msg.channel.send("An error occured: " + err)
-    });
   }
 });
 
