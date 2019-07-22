@@ -123,7 +123,7 @@ bot.on('message', msg => {
         });
       } else {
         msg.channel.send("User Found")
-        Server.update({
+        dbGuild.update({
           "xpData.UserID": msg.author.id
         }, {
           $inc: {
