@@ -125,20 +125,21 @@ bot.on('message', msg => {
         });
       } else {
         msg.channel.send("User Found")
-        addexp()
+        addexp(dbGuild)
       }
     }
   });
 
-  function addexp() {
+  function addexp(dbGuild) {
     msg.channel.send("Adding xp")
-    Server.update({
+    dbGuild.update({
       "xpData.UserID": msg.author.id
     }, {
       $inc: {
         "xpData.$.xp": rawxp
       }
     })
+    dbGuild.save()
   }
 });
 
