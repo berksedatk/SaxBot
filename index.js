@@ -102,7 +102,7 @@ bot.on('message', msg => {
     if (!dbGuild) {
       msg.channel.send("An error occured on database, please contact devs.")
     } else if (dbGuild) {
-      let xpUser = "A";
+      let xpUser;
       let count = 0;
       dbGuild.xpData.map(() => count =+ 1);
       for (var i = 0; i < count; i++) {
@@ -110,13 +110,13 @@ bot.on('message', msg => {
           xpUser = dbGuild.xpData[i]
         }
       }
-      if (!xpUser === "A") {
+      if (!xpUser === undefined) {
         Server.update({
           "xpData.UserID": msg.author.id
         }, {
           $inc: { "xpData.$.xp" : rawxp }
         })
-      } else if (xpUser === "A") {
+      } else if (xpUser === undefined) {
           dbGuild.xpData.push({
             UserID: msg.author.id,
             xp: rawxp,
