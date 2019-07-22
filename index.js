@@ -129,8 +129,9 @@ bot.on('message', msg => {
       }
     }
   });
-  
+
   if (addxp === true) {
+    msg.channel.send("Adding xp")
     Server.update({
       "xpData.UserID": msg.author.id
     }, {
@@ -141,6 +142,8 @@ bot.on('message', msg => {
     dbGuild.save().catch(err => {
       msg.channel.send("An error occured: " + err)
     });
+  } else {
+    msg.channel.send("O " +addxp)
   }
 });
 
