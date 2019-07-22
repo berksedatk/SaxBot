@@ -111,16 +111,7 @@ bot.on('message', msg => {
           msg.channel.send(xpUser.xp)
         }
       }
-      if (!xpUser === undefined) {
-        msg.channel.send("User Found")
-        Server.update({
-          "xpData.UserID": msg.author.id
-        }, {
-          $inc: {
-            "xpData.$.xp": rawxp
-          }
-        })
-      } else if (xpUser === undefined) {
+      if (xpUser === undefined) {
         msg.channel.send("User Not Found")
         dbGuild.xpData.push({
           UserID: msg.author.id,
@@ -130,6 +121,15 @@ bot.on('message', msg => {
         dbGuild.save().catch(err => {
           msg.channel.send("An error occured: " + err)
         });
+      } else {
+        msg.channel.send("User Found")
+        Server.update({
+          "xpData.UserID": msg.author.id
+        }, {
+          $inc: {
+            "xpData.$.xp": rawxp
+          }
+        })
       }
     }
   })
