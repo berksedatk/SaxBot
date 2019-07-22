@@ -95,6 +95,8 @@ bot.on('message', msg => {
 
   const rawxp = Math.floor(Math.random() * 100) + 1;
 
+  let addxp = false;
+
   Server.findOne({
     guildID: msg.guild.id
   }, (err, dbGuild) => {
@@ -123,19 +125,23 @@ bot.on('message', msg => {
         });
       } else {
         msg.channel.send("User Found")
-        dbGuild.update({
-          "xpData.UserID": msg.author.id
-        }, {
-          $inc: {
-            "xpData.$.xp": rawxp
-          }
-        })
-        dbGuild.save().catch(err => {
-          msg.channel.send("An error occured: " + err)
-        })
+        addxp = true
       }
     }
-  })
+  });
+  
+  if (addxp === true) {
+    Server.update({
+      "xpData.UserID": msg.author.id
+    }, {
+      $inc: {
+        "xpData.$.xp": rawxp
+      }
+    })
+    dbGuild.save().catch(err => {
+      msg.channel.send("An error occured: " + err)
+    });
+  }
 });
 
 bot.on('guildCreate', guild => {
