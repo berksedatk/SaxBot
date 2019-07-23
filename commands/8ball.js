@@ -14,7 +14,7 @@ module.exports = {
     const no = ['Nope.','Lies!','Uhh... No','Not really','I dont think thats true'];
     const chance = Math.floor(Math.random() * 3);
 
-    var ballEmbed = Discord.RichEmbed()
+    var ballEmbed = new Discord.RichEmbed()
     .setTimestamp()
     .setFooter("Requested by " + message.author.username, message.author.avatarURL)
 
