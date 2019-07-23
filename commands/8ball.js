@@ -17,20 +17,17 @@ module.exports = {
     var ballEmbed = new Discord.RichEmbed()
     .setTimestamp()
     .setFooter("Requested by " + message.author.username, message.author.avatarURL)
-    .addField("Question", args)
+    .setTitle(args)
 
     if (chance === 0) {
-      ballEmbed.setTitle("**Yes!**")
       ballEmbed.setColor("GREEN")
-      ballEmbed.setDescription(yes[Math.floor(Math.random() * yes.lenght)])
+      ballEmbed.addField("**Yes!**", yes[Math.floor(Math.random() * yes.lenght)])
     } else if (chance === 1) {
-      ballEmbed.setTitle("**Maybe...**")
       ballEmbed.setColor("GOLD")
-      ballEmbed.setDescription(maybe[Math.floor(Math.random() * yes.lenght)])
+      ballEmbed.addField("**Maybe...**", maybe[Math.floor(Math.random() * yes.lenght)],)
     } else if (chance === 2) {
-      ballEmbed.setTitle("**No.**")
       ballEmbed.setColor("RED")
-      ballEmbed.setDescription(no[Math.floor(Math.random() * yes.lenght)])
+      ballEmbed.addField("**No.**", no[Math.floor(Math.random() * yes.lenght)],)
     }
     message.channel.send(ballEmbed)
   }
