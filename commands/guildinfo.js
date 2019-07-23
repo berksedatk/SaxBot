@@ -36,6 +36,7 @@ module.exports = {
     let guildEmbed = new Discord.RichEmbed()
     .setTitle(`**${guild.name}**`)
     .setThumbnail(guild.iconURL)
+    .setFooter("Requested by " + message.author.username, message.author.avatarURL)
     .setColor("PURPLE")
     .addField("Guild Owner",`${guild.owner.user.username}#${guild.owner.user.discriminator}`)
     .addField("Guild Create Date", guild.createdAt)
