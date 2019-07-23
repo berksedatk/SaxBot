@@ -15,19 +15,19 @@ module.exports = {
     var title = ""
     var color = ""
     if (chance > 65) {
-      answer = yes[Math.floor(Math.random() * yes.lenght)]
       title = "**Yes!**"
       color = "GREEN"
+      answer = yes[Math.floor(Math.random() * yes.lenght)]
     }
     if (chance > 33 && chance < 66) [
-      answer = maybe[Math.floor(Math.random() * maybe.lenght)]
       title = "**Maybe...**"
       color = "GOLD"
+      answer = maybe[Math.floor(Math.random() * maybe.lenght)]
     }
     if (chance < 34) {
-      answer = no[Math.floor(Math.random() * no.lenght)]
       title = "**No.**"
       color = "RED"
+      answer = no[Math.floor(Math.random() * no.lenght)]
     }
 
     let ballEmbed = Discord.RichEmbed()
