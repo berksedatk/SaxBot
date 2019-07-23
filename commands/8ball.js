@@ -12,8 +12,8 @@ module.exports = {
     const no = ['Nope.','Lies!','Uhh... No','Not really','I dont think thats true'];
     const chance = Math.floor(Math.random() * 100);
     let answer;
-    let title;
-    let color;
+    let title = ""
+    let color = ""
     if (chance > 65) {
       answer = yes[Math.floor(Math.random() * yes.lenght)]
       title = "**Yes!**"
