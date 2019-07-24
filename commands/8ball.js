@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js');1
 
 module.exports = {
   name: '8ball',
@@ -21,15 +21,15 @@ module.exports = {
 
     if (chance === 0) {
       ballEmbed.setColor("GREEN")
-      const ballAnswer = yes[Math.floor(Math.random() * yes.lenght)]
+      var ballAnswer = yes[Math.floor(Math.random() * yes.lenght)]
       ballEmbed.addField("**Yes!**", ballAnswer)
     } else if (chance === 1) {
       ballEmbed.setColor("GOLD")
-      const ballAnswer = maybe[Math.floor(Math.random() * yes.lenght)]
+      var ballAnswer = maybe[Math.floor(Math.random() * yes.lenght)]
       ballEmbed.addField("**Maybe...**", ballAnswer)
     } else if (chance === 2) {
       ballEmbed.setColor("RED")
-      const ballAnswer = no[Math.floor(Math.random() * yes.lenght)]
+      var ballAnswer = no[Math.floor(Math.random() * yes.lenght)]
       ballEmbed.addField("**No.**", ballAnswer)
     }
     message.channel.send(ballEmbed)

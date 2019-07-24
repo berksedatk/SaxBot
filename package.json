@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "discord.js": "^11.4.2",
-    "mongoose": "^5.4.7"
+    "mongoose": "^5.4.7",
+    "node-opus": "^0.3.2"
   },
   "devDependencies": {},
   "scripts": {
