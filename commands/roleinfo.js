@@ -20,7 +20,39 @@ module.exports = {
       }
     })
 
-    function createRoleEmbed(role) {
+    if (roles.length > 1) {
+      message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view?`)
+      for (var i = 0; i < roles.length; i++) {
+        foundRoles.push(`${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position} \n`)
+      }
+      message.channel.send(foundRoles)
+      const filter = m => m.author.id === message.author.id;
+      message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
+       .then(collected => {
+         for (var e = 0; e < roles.length; e++) {
+           if (Number(collected.first().content) === e + 1) {
+             const role = roles[e]
+             const roleEmbed = new Discord.RichEmbed()
+             .setTitle(`**${role.name}**`)
+             .setTimestamp()
+             .setColor(role.color)
+             .setFooter("Color and Permissions are in the format of snowflake. | Requested by " + message.author.username, message.author.avatarURL)
+             .addField("Role Id", role.id)
+             .addField("Seperated", role.hoist, true)
+             .addField("Mentionable", role.mentionable, true)
+             .addField("Position", role.position)
+             .addField("Bot role", role.managed)
+             .addField("Color code", role.color, true)
+             .addField("Permissions", role.permissions, true)
+             message.channel.send(roleEmbed)
+           }
+         }
+       })
+       .catch(error => {
+         return message.channel.send(":x: | Command cancelled.")
+       });
+    } else if (roles.length === 1) {
+      const role = roles[0]
       const roleEmbed = new Discord.RichEmbed()
       .setTitle(`**${role.name}**`)
       .setTimestamp()
@@ -34,30 +66,6 @@ module.exports = {
       .addField("Color code", role.color, true)
       .addField("Permissions", role.permissions, true)
       message.channel.send(roleEmbed)
-    }
-
-    if (roles.length > 1) {
-      message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view?`)
-      for (var i = 0; i < roles.length; i++) {
-        foundRoles.push(`${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position} \n`)
-      }
-      message.channel.send(foundRoles)
-      const filter = m => m.author.id === message.author.id;
-      message.channel.awaitMessages(filter, { max: 1, time: 15000, errors: ['time'] })
-       .then(collected => {
-         for (var e = 0; e < roles.length; e++) {
-           if (collected.first().content.Number() === e + 1) {
-             const role = roles[e]
-             createRoleEmbed(role)
-           }
-         }
-       })
-       .catch(error => {
-         return message.channel.send(":x: | Command cancelled.")
-       });
-    } else if (roles.length === 1) {
-      const role = roles[0]
-      createRoleEmbed(role)
     } else if (!roles.length) {
       message.channel.send(":x: | Theres no such a role named like that. Be careful with the caps, maybe that's the issue.")
     }
