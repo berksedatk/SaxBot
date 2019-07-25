@@ -35,7 +35,7 @@ module.exports = {
       message.channel.send(roleEmbed)
     }
 
-    if (roles.lenght > 1) {
+    if (roles.length > 1) {
       message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view?`)
       for (var i = 1; i < roles.lenght; i++) {
         message.channel.send(`${i} - Name: ${roles[i-1].name}, Position: ${roles[i-1].position}`)
@@ -52,10 +52,10 @@ module.exports = {
         .catch(error => {
           message.channel.send(":x: | Timed out.")
         })
-    } else if (roles.lenght === 1) {
+    } else if (roles.length === 1) {
       const role = roles[0]
       createRoleEmbed(role)
-    } else if (!roles.lenght) {
+    } else if (!roles.length) {
       message.channel.send(":x: | Theres no such a role named like that. Be careful with the caps, maybe that's the issue.")
     }
   }
