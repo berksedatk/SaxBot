@@ -13,10 +13,11 @@ module.exports = {
   async execute(bot, message, args) {
     if (!args[0]) {
       const channel = message.channel;
+      let parentName = ""
       if (channel.parentID === null) {
-        const parentName = "null"
+        parentName = "null"
       } else {
-        const parentName = bot.channels.get(channel.parentID).name
+        parentName = bot.channels.get(channel.parentID).name
       }
       const channelEmbed = new Discord.RichEmbed()
       .setTitle(`**${channel.name}`)
@@ -54,10 +55,11 @@ module.exports = {
            for (var e = 0; e < channels.length; e++) {
              if (Number(collected.first().content) === e + 1) {
                const channel = channels[e]
+               let parentName = ""
                if (channel.parentID === null) {
-                 const parentName = "null"
+                 parentName = "null"
                } else {
-                 const parentName = bot.channels.get(channel.parentID).name
+                 parentName = bot.channels.get(channel.parentID).name
                }
                const channelEmbed = new Discord.RichEmbed()
                .setTitle(`**${channel.name}`)
@@ -80,10 +82,11 @@ module.exports = {
          });
       } else if (channels.length === 1) {
         const channel = channels[0]
+        let parentName = ""
         if (channel.parentID === null) {
-          const parentName = "null"
+          parentName = "null"
         } else {
-          const parentName = bot.channels.get(channel.parentID).name
+          parentName = bot.channels.get(channel.parentID).name
         }
         const channelEmbed = new Discord.RichEmbed()
         .setTitle(`**${channel.name}`)
