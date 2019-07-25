@@ -17,7 +17,7 @@ module.exports = {
     let ballEmbed = new Discord.RichEmbed()
     .setTimestamp()
     .setFooter("Requested by " + message.author.username, message.author.avatarURL)
-    .setTitle(args)
+    .setTitle(message.content.slice(8))
 
     if (chance === 0) {
       answer = yesList[Math.floor(Math.random() * yesList.length)]
