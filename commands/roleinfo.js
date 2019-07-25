@@ -40,7 +40,7 @@ module.exports = {
       for (var i = 1; i < roles.lenght; i++) {
         message.channel.send(`${i} - Name: ${roles[i-1].name}, Position: ${roles[i-1].position}`)
       }
-      message.channel.awaitMessages(m => m.auhtor.id === message.author.id, { max: 1, time: 15, errors:['time'] })
+      message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15, errors:['time'] })
         .then(collected => {
           for (var e = 1; e < roles.lenght; e++) {
             if (collected.content === e) {
