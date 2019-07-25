@@ -9,9 +9,9 @@ module.exports = {
   async execute(bot, message, args) {
     if (!args[0]) return message.channel.send(":x: | You have to ask a question to 8ball!");
 
-    yes = ['Truth','Thats true','Yes, yes it is','Of course'];
-    maybe = ['Hmm...','Maybe??','I dunno','I wish i knew that','Im not sure'];
-    no = ['Nope.','Lies!','Uhh... No','Not really','I dont think thats true'];
+    const yesList = ['Truth','Thats true','Yes, yes it is','Of course'];
+    const maybeList = ['Hmm...','Maybe??','I dunno','I wish i knew that','Im not sure'];
+    const noList = ['Nope.','Lies!','Uhh... No','Not really','I dont think thats true'];
     const chance = Math.floor(Math.random() * 3)
 
     let ballEmbed = new Discord.RichEmbed()
@@ -20,19 +20,16 @@ module.exports = {
     .setTitle(args)
 
     if (chance === 0) {
-      answer = Math.floor(Math.random() * yes.lenght)
-      ballAnswer = yes[answer]
-      ballEmbed.addField("**Yes!**", ballAnswer)
+      answer = yesList[Math.floor(Math.random() * yesList.length)]
+      ballEmbed.addField("Yes!", answer)
       ballEmbed.setColor("GREEN")
     } else if (chance === 1) {
-      answer = Math.floor(Math.random() * maybe.lenght)
-      ballAnswer = maybe[answer]
-      ballEmbed.addField("**Maybe...**", ballAnswer)
+      answer = maybeList[Math.floor(Math.random() * maybeList.length)]
+      ballEmbed.addField("**Maybe...**", answer)
       ballEmbed.setColor("GOLD")
     } else if (chance === 2) {
-      answer = Math.floor(Math.random() * no.lenght)
-      ballAnswer = no[answer]
-      ballEmbed.addField("**No.**", ballAnswer)
+      answer = noList[Math.floor(Math.random() * noList.length)]
+      ballEmbed.addField("**No.**", answer)
       ballEmbed.setColor("RED")
     }
 
