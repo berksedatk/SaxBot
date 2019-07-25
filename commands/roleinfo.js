@@ -45,7 +45,7 @@ module.exports = {
       message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15000, errors:['time'] })
         .then(collected => {
           for (var e = 0; e < roles.length; e++) {
-            if (collected.content === toString(e + 1)) {
+            if (collected.content === e + 1) {
               const role = roles[e]
               createRoleEmbed(role)
             }
