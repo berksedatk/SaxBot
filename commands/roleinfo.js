@@ -23,7 +23,7 @@ module.exports = {
     if (roles.length > 1) {
       message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view? \n\`Bigger value means higher position.\``)
       for (var i = 0; i < roles.length; i++) {
-        foundRoles.push(`,${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position}`)
+        foundRoles.push(`${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position}`)
       }
       message.channel.send(foundRoles)
       const filter = m => m.author.id === message.author.id;
@@ -44,9 +44,10 @@ module.exports = {
              .addField("Bot role", role.managed)
              .addField("Color code", role.color, true)
              .addField("Permissions", role.permissions, true)
-             message.channel.send(roleEmbed)
+             return message.channel.send(roleEmbed)
            }
          }
+         return message.channel.send(":x: | Command cancelled.")
        })
        .catch(error => {
          return message.channel.send(":x: | Command cancelled.")
