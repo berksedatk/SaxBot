@@ -13,9 +13,21 @@ module.exports = {
   async execute(bot, message, args) {
     if (!args[0]) {
       const channel = message.channel;
+      const channelEmbed = new Discord.RichEmbed()
+      .setTitle(`**${channel.name}`)
+      .setTimestamp()
+      .setColor("BLUE")
+      .setFooter("Requested by " + message.author.username, message.author.avatarURL)
+      .addField("Type", channel.type)
+      .addField("Id", channel.id)
+      .addField("Position", channel.position, true)
+      .addField("Nsfw", channel.nsfw, true)
+      .addField("Topic", channel.topic)
+      if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channel.parentID).name + `(${channel.parentID})`)
+      return message.channel.send(channelEmbed)
     } else if (args[0]) {
       const channels = [];
-      const channelName = message.content.slice(13)
+      const channelName = message.content.slice(14)
       message.guild.channels.map(c => {
         if (c.name === channelName) {
           channels.push(c)
@@ -47,7 +59,7 @@ module.exports = {
                .addField("Position", channel.position, true)
                .addField("Nsfw", channel.nsfw, true)
                .addField("Topic", channel.topic)
-               if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channels[i].parentID) + `(${channel.parentID})`)
+               if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channel.parentID).name + `(${channel.parentID})`)
                return message.channel.send(channelEmbed)
              }
            }
@@ -68,7 +80,7 @@ module.exports = {
         .addField("Position", channel.position, true)
         .addField("Nsfw", channel.nsfw, true)
         .addField("Topic", channel.topic)
-        if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channels[i].parentID) + `(${channel.parentID})`)
+        if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channel.parentID).name + `(${channel.parentID})`)
         return message.channel.send(channelEmbed)
       }
     }
