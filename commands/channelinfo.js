@@ -42,7 +42,7 @@ module.exports = {
 
       if (!channels.length) {
         message.channel.send(":x: | Theres no such a channel named like that.")
-      } else if (channels.length < 2) {
+      } else if (channels.length > 1) {
         const foundChannels = [];
         message.channel.send(`Theres more than one channels called ${channelName}, which one would you want to view? \n\`Smaller value means higher position.\``)
         for (var i = 0; i < channels.length; i++) {
