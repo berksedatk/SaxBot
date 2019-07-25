@@ -37,12 +37,12 @@ module.exports = {
 
     if (roles.length > 1) {
       message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view?`)
-      for (var i = 1; i < roles.length; i++) {
+      for (var i; i < roles.length; i++) {
         message.channel.send(`${i} - Name: ${roles[i-1].name}, Position: ${roles[i-1].position}`)
       }
       message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15000, errors:['time'] })
         .then(collected => {
-          for (var e = 1; e < roles.length; e++) {
+          for (var e ; e < roles.length; e++) {
             if (collected.content === e) {
               const role = roles[e-1]
               createRoleEmbed(role)
