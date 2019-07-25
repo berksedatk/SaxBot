@@ -12,7 +12,7 @@ module.exports = {
   guildOnly: 'true',
   async execute(bot, message, args) {
     const roleName = message.content.slice(11)
-    const role = bot.guilds.get(message.guild).roles.find('name', roleName)
+    const role = bot.guilds.get(message.guild.id).roles.find('name', roleName)
 
     const roleEmbed = new Discord.RichEmbed()
     .setTitle(`**${role.name}**`)
