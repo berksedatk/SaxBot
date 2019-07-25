@@ -13,6 +13,7 @@ module.exports = {
   async execute(bot, message, args) {
     const roleName = message.content.slice(11)
     const roles = [];
+    const foundRoles = [];
     message.guild.roles.map(r => {
       if (r.name === roleName) {
         roles.push(r)
@@ -38,12 +39,13 @@ module.exports = {
     if (roles.length > 1) {
       message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view?`)
       for (var i = 0; i < roles.length; i++) {
-        message.channel.send(`${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position}`)
+        foundRoles.push(`${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position} \n`)
       }
+      message.channel.send(foundRoles)
       message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15000, errors:['time'] })
         .then(collected => {
           for (var e = 0; e < roles.length; e++) {
-            if (collected.content === `${e + 1}`) {
+            if (collected.content.Number() === e + 1) {
               const role = roles[e]
               createRoleEmbed(role)
             }
