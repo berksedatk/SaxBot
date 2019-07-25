@@ -40,7 +40,7 @@ module.exports = {
       for (var i = 1; i < roles.lenght; i++) {
         message.channel.send(`${i} - Name: ${roles[i-1].name}, Position: ${roles[i-1].position}`)
       }
-      message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15, errors:['time'] })
+      message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15000, errors:['time'] })
         .then(collected => {
           for (var e = 1; e < roles.lenght; e++) {
             if (collected.content === e) {
@@ -50,7 +50,7 @@ module.exports = {
           }
         })
         .catch(error => {
-          message.channel.send(":x: | Timed out.")
+          return message.channel.send(":x: | Timed out.")
         })
     } else if (roles.length === 1) {
       const role = roles[0]
