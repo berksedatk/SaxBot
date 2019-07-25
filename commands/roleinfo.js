@@ -21,9 +21,9 @@ module.exports = {
     })
 
     if (roles.length > 1) {
-      message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view?`)
+      message.channel.send(`Theres more than one roles called ${roleName}, which one would you want to view? \n\`Bigger value means higher position.\``)
       for (var i = 0; i < roles.length; i++) {
-        foundRoles.push(`${i + 1} - Name: ${roles[i].name}, Position: ${roles[i].position} \n`)
+        foundRoles.push(`${i + 1} + Name: ${roles[i].name}, Position: ${roles[i].position}`)
       }
       message.channel.send(foundRoles)
       const filter = m => m.author.id === message.author.id;
