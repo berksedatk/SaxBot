@@ -33,6 +33,7 @@ module.exports = {
       ballAnswer = no[Math.floor(Math.random() * yes.lenght)]
       data.push(ballEmbed.addField("**No.**", ballAnswer))
     }
-    message.channel.send(data.ballEmbed)
+    data.push(message.channel.send(ballEmbed))
+    message.channel.send(data, {split: true})
   }
 };
