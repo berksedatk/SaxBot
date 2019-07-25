@@ -21,7 +21,7 @@ module.exports = {
 
     if (chance === 0) {
       answer = yesList[Math.floor(Math.random() * yesList.length)]
-      ballEmbed.addField("Yes!", answer)
+      ballEmbed.addField("**Yes!**", answer)
       ballEmbed.setColor("GREEN")
     } else if (chance === 1) {
       answer = maybeList[Math.floor(Math.random() * maybeList.length)]
