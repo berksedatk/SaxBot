@@ -13,25 +13,26 @@ module.exports = {
     maybe = ['Hmm...','Maybe??','I dunno','I wish i knew that','Im not sure'];
     no = ['Nope.','Lies!','Uhh... No','Not really','I dont think thats true'];
     const chance = Math.floor(Math.random() * 3);
+    const data = [];
 
-    var ballEmbed = new Discord.RichEmbed()
-    .setTimestamp()
-    .setFooter("Requested by " + message.author.username, message.author.avatarURL)
-    .setTitle(args)
+    data.push(ballEmbed = new Discord.RichEmbed())
+    data.push(ballEmbed.setTimestamp())
+    data.push(ballEmbed.setFooter("Requested by " + message.author.username, message.author.avatarURL))
+    data.push(ballEmbed.setTitle(args))
 
     if (chance === 0) {
-      ballEmbed.setColor("GREEN")
-      var ballAnswer = yes[Math.floor(Math.random() * yes.lenght)]
-      ballEmbed.addField("**Yes!**", ballAnswer)
+      data.push(ballEmbed.setColor("GREEN"))
+      ballAnswer = yes[Math.floor(Math.random() * yes.lenght)]
+      data.push(ballEmbed.addField("**Yes!**", ballAnswer))
     } else if (chance === 1) {
-      ballEmbed.setColor("GOLD")
-      var ballAnswer = maybe[Math.floor(Math.random() * yes.lenght)]
-      ballEmbed.addField("**Maybe...**", ballAnswer)
+      data.push(ballEmbed.setColor("GOLD"))
+      ballAnswer = maybe[Math.floor(Math.random() * yes.lenght)]
+      data.push(ballEmbed.addField("**Maybe...**", ballAnswer))
     } else if (chance === 2) {
-      ballEmbed.setColor("RED")
-      var ballAnswer = no[Math.floor(Math.random() * yes.lenght)]
-      ballEmbed.addField("**No.**", ballAnswer)
+      data.push(ballEmbed.setColor("RED"))
+      ballAnswer = no[Math.floor(Math.random() * yes.lenght)]
+      data.push(ballEmbed.addField("**No.**", ballAnswer))
     }
-    message.channel.send(ballEmbed)
+    message.channel.send(data.ballEmbed)
   }
 };
