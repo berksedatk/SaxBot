@@ -20,7 +20,7 @@ module.exports = {
         parentName = bot.channels.get(channel.parentID).name
       }
       const channelEmbed = new Discord.RichEmbed()
-      .setTitle(`**${channel.name}`)
+      .setTitle(`**${channel.name}**`)
       .setTimestamp()
       .setColor("BLUE")
       .setFooter("Requested by " + message.author.username, message.author.avatarURL)
@@ -62,7 +62,7 @@ module.exports = {
                  parentName = bot.channels.get(channel.parentID).name
                }
                const channelEmbed = new Discord.RichEmbed()
-               .setTitle(`**${channel.name}`)
+               .setTitle(`**${channel.name}**`)
                .setTimestamp()
                .setColor("BLUE")
                .setFooter("Requested by " + message.author.username, message.author.avatarURL)
@@ -89,7 +89,7 @@ module.exports = {
           parentName = bot.channels.get(channel.parentID).name
         }
         const channelEmbed = new Discord.RichEmbed()
-        .setTitle(`**${channel.name}`)
+        .setTitle(`**${channel.name}**`)
         .setTimestamp()
         .setColor("BLUE")
         .setFooter("Requested by " + message.author.username, message.author.avatarURL)
