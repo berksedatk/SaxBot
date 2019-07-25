@@ -6,7 +6,7 @@ const color = require('../data/colors.json');
 module.exports = {
   name: 'guildinfo',
   category: "Utility",
-  description: 'Lists the information about the guild you\'re in',
+  description: 'Lists the information about the guild you\'re in.',
   aliases: ['serverinfo'],
   cooldown: 5,
   guildOnly: 'true',

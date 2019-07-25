@@ -6,7 +6,7 @@ const color = require('../data/colors.json');
 module.exports = {
   name: 'ban',
   category: "Moderation",
-  description: 'Ban someone',
+  description: 'Ban someone.',
   usage: '[user] [reason]',
   cooldown: 5,
   guildOnly: 'true',

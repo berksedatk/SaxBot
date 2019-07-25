@@ -6,7 +6,7 @@ const color = require('../data/colors.json');
 module.exports = {
   name: 'kick',
   category: "Moderation",
-  description: 'Kick someone',
+  description: 'Kick someone.',
   usage: '[user] [reason]',
   cooldown: 5,
   guildOnly: 'true',
