@@ -45,14 +45,15 @@ module.exports = {
       message.channel.awaitMessages(m => m.author.id === message.author.id, { max: 1, time: 15000, errors:['time'] })
         .then(collected => {
           for (var e = 0; e < roles.length; e++) {
-            if (collected.content.Number() === e + 1) {
+            message.channel.send(collected.content + " " + e)
+            if (collected.content === toString(e)) {
               const role = roles[e]
               createRoleEmbed(role)
             }
           }
         })
         .catch(error => {
-          return message.channel.send(":x: | Timed out.")
+          return message.channel.send(":x: | Command cancelled.")
         })
     } else if (roles.length === 1) {
       const role = roles[0]
