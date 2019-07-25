@@ -13,6 +13,11 @@ module.exports = {
   async execute(bot, message, args) {
     if (!args[0]) {
       const channel = message.channel;
+      if (channel.parentID === null) {
+        const parentName = "null"
+      } else {
+        const parentName = bot.channels.get(channel.parentID).name
+      }
       const channelEmbed = new Discord.RichEmbed()
       .setTitle(`**${channel.name}`)
       .setTimestamp()
@@ -20,10 +25,10 @@ module.exports = {
       .setFooter("Requested by " + message.author.username, message.author.avatarURL)
       .addField("Type", channel.type)
       .addField("Id", channel.id)
-      .addField("Position", channel.position, true)
-      .addField("Nsfw", channel.nsfw, true)
+      .addField("Position", channel.position)
+      .addField("Nsfw", channel.nsfw)
       .addField("Topic", channel.topic)
-      if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channel.parentID).name + `(${channel.parentID})`)
+      .addField("Category", parentName + `(${channel.parentID})`)
       return message.channel.send(channelEmbed)
     } else if (args[0]) {
       const channels = [];
@@ -49,6 +54,11 @@ module.exports = {
            for (var e = 0; e < channels.length; e++) {
              if (Number(collected.first().content) === e + 1) {
                const channel = channels[e]
+               if (channel.parentID === null) {
+                 const parentName = "null"
+               } else {
+                 const parentName = bot.channels.get(channel.parentID).name
+               }
                const channelEmbed = new Discord.RichEmbed()
                .setTitle(`**${channel.name}`)
                .setTimestamp()
@@ -56,10 +66,10 @@ module.exports = {
                .setFooter("Requested by " + message.author.username, message.author.avatarURL)
                .addField("Type", channel.type)
                .addField("Id", channel.id)
-               .addField("Position", channel.position, true)
-               .addField("Nsfw", channel.nsfw, true)
+               .addField("Position", channel.position)
+               .addField("Nsfw", channel.nsfw)
                .addField("Topic", channel.topic)
-               if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channel.parentID).name + `(${channel.parentID})`)
+               .addField("Category", parentName + `(${channel.parentID})`)
                return message.channel.send(channelEmbed)
              }
            }
@@ -70,6 +80,11 @@ module.exports = {
          });
       } else if (channels.length === 1) {
         const channel = channels[0]
+        if (channel.parentID === null) {
+          const parentName = "null"
+        } else {
+          const parentName = bot.channels.get(channel.parentID).name
+        }
         const channelEmbed = new Discord.RichEmbed()
         .setTitle(`**${channel.name}`)
         .setTimestamp()
@@ -77,10 +92,10 @@ module.exports = {
         .setFooter("Requested by " + message.author.username, message.author.avatarURL)
         .addField("Type", channel.type)
         .addField("Id", channel.id)
-        .addField("Position", channel.position, true)
-        .addField("Nsfw", channel.nsfw, true)
+        .addField("Position", channel.position)
+        .addField("Nsfw", channel.nsfw)
         .addField("Topic", channel.topic)
-        if (!channel.parentID === null) channelEmbed.addField("Category", bot.channels.get(channel.parentID).name + `(${channel.parentID})`)
+        .addField("Category", parentName + `(${channel.parentID})`)
         return message.channel.send(channelEmbed)
       }
     }
