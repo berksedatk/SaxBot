@@ -18,7 +18,7 @@ module.exports = {
     const jazzMusic = `../jazz/${number}.mp3`
 
     voiceChannel.join().then(connection => {
-      const dispatcher = connection.playFile(jazzMusic);
+      const dispatcher = connection.playFile(`../jazz/3.mp3`);
       message.channel.send(":saxophone: | Playing jazz for you! | :saxophone:")
       dispatcher.on("end", end => {
         voiceChannel.leave()
